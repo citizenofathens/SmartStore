@@ -1,4 +1,12 @@
-
+import sys
+import pathlib
+import os 
+import time
+import bcrypt
+import pybase64
+import urllib
+import requests
+import http.client
 import requests
 import json
 import time
@@ -33,19 +41,3 @@ def get_token(client_id, client_secret, type_="SELF") -> str:
         else:
             print(f'[{res_data}] 토큰 요청 실패')
             time.sleep(1)
-#https://apicenter.commerce.naver.com/ko/member/application/manage/detail;id=3lBotoGaXnCVyi4gHQTwPD 애플리케이션ID, 애플리케이션시크릿
-#token = get_token(client_id='애플리케이션ID', client_secret='애플리케이션시크릿')
-access_token = get_token(client_id='3lBotoGaXnCVyi4gHQTwPD', client_secret='$2a$04$/luz.NNHJfCzpKxYpWX8N.')
-
-# 상품번호는 스마트스토어에서 상품수정에서 확인
-
-originProductNo = "8013116003"
-
-
-url = f"https://api.commerce.naver.com/external/v2/products/origin-products/{originProductNo}"
-
-
-headers = { 'Authorization':access_token }
-
-response = requests.get(url, headers=headers)
-print(response.text)

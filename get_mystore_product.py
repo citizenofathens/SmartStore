@@ -10,6 +10,7 @@ conn = http.client.HTTPSConnection("api.commerce.naver.com")
 
 
 def get_token(client_id, client_secret, type_="SELF") -> str:
+    # get my store
     timestamp = str(int((time.time()-3) * 1000))
     pwd = f'{client_id}_{timestamp}'
     hashed = bcrypt.hashpw(pwd.encode('utf-8'), client_secret.encode('utf-8'))
